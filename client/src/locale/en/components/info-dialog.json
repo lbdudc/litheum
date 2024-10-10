@@ -1,0 +1,12 @@
+{
+  "info-dialog": {
+    "body": {
+      "1": "The LITHEUM tool allows exploring existing energy demands by selecting between heating, cooling, and lighting in the dropdown menu found in the “Visualization” section. Depending on the zoom level, results are obtained by grid, in a distant approximation, or by building, in a closer one; although it is possible to switch from grid visualization to building by clicking the “Show buildings” button, located on the right side of the screen next to the language switch button.",
+      "2": "The application provides two modes for selecting geometries and visualizing their data. On one hand, an “Individual” mode that allows visualizing the data of a selected geometry in a table or through temperature and energy balance charts by clicking the “Load charts” button. On the other hand, a “Group” mode that allows obtaining grouped data from multiple geometries selected, either by clicking on them or using the “Polygon selection” button, located on the right side of the screen next to the “Show buildings” button, and drawing the desired selection contour on the map.",
+      "3": "In addition to visualizing existing demands, the tool provides the possible energy demands resulting from applying constructive improvements such as increasing insulation in walls or roof, or changing windows. Improvements can be incorporated by selecting one or several geometries (grid or building) and choosing the desired options in the “Recalculate demand” section."
+    },
+    "close": "Close",
+    "not-show": "Don't show again",
+    "btn-tooltip": "Information"
+  }
+}

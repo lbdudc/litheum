@@ -1,0 +1,111 @@
+version: "3"
+services:
+  server:
+    container_name: ${SERVER_CONTAINER_NAME}
+    build:
+      context: ../../server
+      dockerfile: Dockerfile
+    depends_on:
+      importer:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    environment:
+      - SPRING_DATASOURCE_HOST=${POSTGRES_CONTAINER_NAME}
+      - SPRING_DATASOURCE_DATABASE=${POSTGRES_DB}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+      - PROPERTIES_CLIENTHOST=${SERVER_CLIENTHOST}
+
+  importer:
+    container_name: ${IMPORTER_CONTAINER_NAME}
+    build:
+      context: ../../deploy/importer
+      dockerfile: Dockerfile
+      args:
+       - SKIP_IMPORTATION=${SKIP_IMPORTATION}
+       - GIT_SSH=${CALCULO_KEY}  
+       - GIT_USER=${CALCULO_USER}
+    volumes:
+      - "./resources/spatial:/app/importer/resources"
+      - "./resources/recalc:/app/importer/resources/csv"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - POSTGRES_HOST=${POSTGRES_CONTAINER_NAME}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    restart: on-failure
+
+  flask:
+    build:
+      context: ../../flask
+      dockerfile: Dockerfile
+      args:
+       - GIT_SSH=${CALCULO_KEY}
+       - GIT_USER=${CALCULO_USER}
+       - EXECUTION_ENV=production
+    depends_on:
+      importer:
+        condition: service_completed_successfully
+    container_name: ${FLASK_CONTAINER_NAME}
+    restart: unless-stopped
+    environment:
+      - POSTGRES_HOST=${POSTGRES_CONTAINER_NAME}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - "./resources/recalc:/app/flask/resources"
+
+  client:
+    build:
+      context: ../../client
+      dockerfile: Dockerfile
+    container_name: ${CLIENT_CONTAINER_NAME}
+    volumes:
+      - "volume-client:/app/client/dist"
+      - "./.env.production:/app/client/.env.production"
+      - "./vue.config.js:/app/client/vue.config.js"
+
+  postgres:
+    container_name: ${POSTGRES_CONTAINER_NAME}
+    build:
+      context: ../../deploy/postgres
+      dockerfile: postgres.dockerfile
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASS: ${POSTGRES_PASSWORD}
+      PGDATA: ${PGDATA}
+      POSTGRES_MULTIPLE_EXTENSIONS: ${POSTGRES_MULTIPLE_EXTENSIONS}
+      POSTGRES_RUN_AS_ROOT: ${POSTGRES_RUN_AS_ROOT}
+    volumes:
+      - postgres:/data/postgres
+    restart: on-failure
+    healthcheck:
+      test: "PGPASSWORD=${POSTGRES_PASSWORD} pg_isready -h 127.0.0.1 -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+
+  nginx:
+    container_name: ${NGINX_CONTAINER_NAME}
+    build:
+      context: ./nginx
+      dockerfile: nginx.dockerfile
+    depends_on:
+      client:
+        condition: service_completed_successfully
+    volumes:
+      - "volume-client:/app/client/dist"
+    ports:
+      - "1234:80"
+    restart: unless-stopped
+
+volumes:
+  volume-client:
+  postgres:
+    external: false
+
+networks:
+  local:
+    driver: bridge

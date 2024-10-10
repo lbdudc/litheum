@@ -1,0 +1,5 @@
+python-dotenv
+flask
+waitress
+flask-cors
+psycopg2

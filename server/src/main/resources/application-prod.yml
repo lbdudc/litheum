@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    host: litheum-postgres
+    username: litheum
+    password: $$litheum$$
+    port: 5432
+    database: litheum
+server:
+  uploads: upload
+  temporaryUploads: temporary
+  #Default internal page size (Used for some high database usage methods)
+  pageSize: 3
+  port: 9001
+security-properties:
+logging:
+  level:
+    root: INFO
+    es.udc.lbd.gema.lps: DEBUG
+    es.udc.lbd.gema.lps.model.util.EnumConverter: ERROR
+properties:
+  clientURL: https://litheum.citic.udc.es
+  environment: prod
+
+geoserver:
+  # GeoServer url also goes to gulp/config.js
+  active: false
+  url: http://cronos.lbd.org.es/geoserver
+  user: admin
+  password: $$geoserver$$

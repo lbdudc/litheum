@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    host: 10.56.67.125
+    port: 5432
+    database: litheum-dev
+    username: litheum
+    password: $$litheum$$
+geoserver:
+  active: false

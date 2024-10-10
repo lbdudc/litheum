@@ -1,0 +1,62 @@
+{
+  "mapViewer": {
+    "mapViewer": "Visor de Mapa",
+    "cancel": "Cancelar",
+    "close": "Pechar",
+    "downloadFormat": "Formato de descarga",
+    "export": "Exportar",
+    "exportManager": "Xestor de exportacións",
+    "listLayerElements": "Listar elementos da capa",
+    "loading": "Cargando datos",
+    "loading-recalc": "Recalculando demanda...",
+    "margin": "Marxe",
+    "portrait": "Retrato",
+    "scale": "Escala",
+    "searchInMap": "Buscar no mapa...",
+    "urlToShare": "URL para compartir",
+
+    "wmsDetail": {
+      "title": "WMS DETALLE",
+      "layers": "Capas",
+      "layer-items": "Elementos da capa",
+      "layer-item-detail": "Detalle do elemento",
+      "no-data": "Non hai datos",
+      "no-property-data": "Sen datos",
+      "form-tooltip": "Ir ó formulario de detalle do elemento"
+    },
+    "routeCompletationError": "Por favor, completa ou cancela a ruta antes de continuar",
+    "chooseEntity": "Escolla a entidade que desexa listar",
+    "wmsLegend": {
+      "title": "Lenda Capa WMS",
+      "no-data": "Non hai datos dispoñibles"
+    },
+    "mustSelectAnExportOption": "Debe escoller polo menos un dos formatos de exportación",
+    "addALayer": "Non hai capas engadidas. Engade unha ",
+    "addALayer-link": "aquí",
+    "map": "Mapa",
+    "layer-label": {
+      "Stadia-StamenTonerLite": "Stadia.StamenTonerLite",
+      "Basemaps-Cartocdn": "Basemaps.Cartocdn",
+      "OpenStreetMap-Mapnik": "OpenStreetMap.Mapnik",
+      "Esri-WorldStreetMap": "Esri.WorldStreetMap",
+      "Stamen-Terrain": "Stamen.Terrain",
+      "Stamen-TonerLite": "Stamen.TonerLite",
+      "celda-geom": "celda-geom",
+      "edificio-geom": "edificio-geom"
+    },
+    "style-legend-label": {
+      "view-all": "Todas",
+      "view-selected": "Seleccionadas"
+    },
+    "map-label": {
+      "default": "Mapa por defecto",
+      "map": "Mapa"
+    },
+    "popup": {
+      "table": {
+        "property": "Propiedad",
+        "value": "Valor"
+      }
+    }
+  }
+}

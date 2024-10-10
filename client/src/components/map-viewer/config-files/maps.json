@@ -1,0 +1,38 @@
+{
+  "maps": [
+    {
+      "name": "map",
+      "sortable": false,
+      "layers": [
+        {
+          "name": "Basemaps.Cartocdn",
+          "baseLayer": true,
+          "order": 1
+        },
+        {
+          "name": "Esri.WorldStreetMap",
+          "baseLayer": true,
+          "order": 2
+        },
+        {
+          "name": "OpenStreetMap.Mapnik",
+          "baseLayer": true,
+          "order": 3
+        },
+        {
+          "name": "celda-geom",
+          "order": 1,
+          "style": "grayPolygon",
+          "selected": false
+        },
+        {
+          "name": "edificio-geom",
+          "order": 2,
+          "style": "grayPolygon",
+          "selected": false
+        }
+      ],
+      "mapOptions": { "minZoom": 12, "maxZoom": 18 }
+    }
+  ]
+}

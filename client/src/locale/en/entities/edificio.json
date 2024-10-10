@@ -1,0 +1,33 @@
+
+{
+  "t_edificio": {
+    "name": "Edificio",
+    "prop": {
+        
+        "id": "id",
+        "refCat": "refCat",
+        "geom": "geom",
+        "heating": "heating",
+        "lighting": "lighting",
+        "cooling": "cooling",
+        "tc": "tc",
+        "constructionYear": "constructionYear",
+        "ct": "ct"
+    },
+    "messages": {
+      "create.success": "Edificio created.",
+      "update.success": "Edificio updated.",
+      "delete.success": "Edificio deleted."
+    },
+    "error": {
+      "id-exists": "A new edificio cannot already have a id",
+      "id-not-exists": "Updating a edificio without a id",
+      "form-errors": "This edificio cannot be saved due to form errors."
+    },
+    "headers": {
+      "edificioList": "Edificio List" ,
+      "edificioFormDetail": "Edificio Form Detail",
+      "edificioForm": "Edificio Form" 
+    }
+  }
+}

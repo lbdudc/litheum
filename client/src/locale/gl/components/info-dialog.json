@@ -1,0 +1,12 @@
+{
+  "info-dialog": {
+    "body": {
+      "1": "A ferramenta LITHEUM permite explorar as demandas enerxéticas existentes seleccionando entre calefacción, refrixeración e iluminación no menú despregable atopado no apartado de “Visualización”. En función do zoom realizado, obtéñense resultados por malla, nunha aproximación distante, ou por edificio, nunha aproximación máis próxima; aínda que é posible cambiar da visualización de malla a edificio pulsando o botón “Mostrar edificios”, situado na parte dereita da pantalla sobre o botón de cambio de idioma.",
+      "2": "A aplicación proporciona dous modos de selección de xeometrías e visualización dos seus datos. Por unha banda, un modo “Individual” que permite visualizar os datos dunha xeometría seleccionada en táboa ou mediante gráficas de temperatura e equilibrio enerxético ao pulsar o botón “Cargar gráficas”. Por outra banda, un modo “Grupal” que permite obter datos agrupados das múltiples xeometrías que se seleccionen, xa sexa facendo clic sobre as mesmas ou utilizando o botón “Selección en polígono”, situado na parte dereita da pantalla sobre o botón de “Mostrar edificios”, e debuxando sobre o mapa o contorno de selección desexado.",
+      "3": "Ademais de visualizar as demandas existentes, a ferramenta proporciona as posibles demandas enerxéticas resultado de aplicar melloras construtivas como o incremento de aislamento en muros ou teito, ou o cambio de fiestras. As melloras poden incorporarse seleccionando unha ou varias xeometrías (de malla ou edificio) e elixindo no apartado “Recalcular demanda” as opcións desexadas."
+    },
+    "close": "Pechar",
+    "not-show": "Non mostrar de novo",
+    "btn-tooltip": "Información"
+  }
+}

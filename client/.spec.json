@@ -1,0 +1,528 @@
+{
+  "features": [
+    "GEMA_SPL",
+    "DataManagement",
+    "GraphicalUserInterface",
+    "MapViewer",
+    "Tools",
+    "DM_SpatialDatabase",
+    "DM_GenerationType",
+    "DM_DataServer",
+    "MV_MapServer",
+    "MV_Tools",
+    "MV_MapManagement",
+    "DM_SD_PostGIS",
+    "MV_MM_UMV_MapCenter",
+    "MV_MM_UniqueMapViewer",
+    "DM_GT_Identity",
+    "GUI_Menu",
+    "GUI_M_Position",
+    "GUI_M_Top",
+    "MV_MS_GeoJSON",
+    "MV_T_ZoomWindow",
+    "MV_T_MeasureControl",
+    "MV_T_InformationMode",
+    "MV_T_UserGeolocation",
+    "MV_T_ViewMapAsList",
+    "GUI_Lists",
+    "MV_CI_Scale",
+    "MV_ContextInformation",
+    "MV_CI_CenterCoordinates",
+    "MV_CI_Dimensions",
+    "MV_CI_Map",
+    "MV_LayerManagement",
+    "MV_LM_Order",
+    "MV_LM_CenterViewOnLayer",
+    "MV_LM_HideLayer",
+    "MV_LM_Opacity",
+    "MV_LM_Style",
+    "MV_LM_ExternalLayer",
+    "MV_LM_StylePreview",
+    "MV_MM_UMV_MC_BBox",
+    "MV_DetailOnClick",
+    "GUI_Forms",
+    "Deploy",
+    "MV_LM_BaseLayerSelector",
+    "T_Quartz",
+    "D_Containers",
+    "D_C_Postgres",
+    "D_C_Nginx",
+    "MV_MS_GeoServer",
+    "D_GitLabRunner",
+    "MV_MS_GJ_Cached",
+    "T_GIS"
+  ],
+  "data": {
+    "basicData": {
+      "index": {
+        "component": "STATIC",
+        "view": "welcome"
+      },
+      "languages": [
+        "en",
+        "es",
+        "gl"
+      ],
+      "name": "litheum",
+      "packageInfo": {
+        "artifact": "litheum",
+        "group": "es.udc.lbd.gisspl"
+      },
+      "database": {
+        "host": "10.56.67.125",
+        "database": "litheum",
+        "username": "litheum",
+        "password": "$$litheum$$"
+      },
+      "extra": {
+        "client_deploy_url": "https://litheum.citic.udc.es",
+        "geoserver_url": "http://cronos.lbd.org.es/geoserver",
+        "geoserver_url_wms": "http://cronos.lbd.org.es/geoserver/wms",
+        "geoserver_user": "admin",
+        "geoserver_password": "$$geoserver$$",
+        "server_deploy_url": "https://litheum.citic.udc.es/backend",
+        "server_deploy_port": "9001"
+      },
+      "SRID": "4326",
+      "version": "0.1.0"
+    },
+    "dataModel": {
+      "enums": [],
+      "entities": [
+        {
+          "name": "Celda",
+          "properties": [
+            {
+              "name": "id",
+              "class": "Long (autoinc)",
+              "pk": true,
+              "required": true,
+              "unique": true
+            },
+            {
+              "name": "geom",
+              "class": "Geometry",
+              "patternType": null,
+              "pattern": null,
+              "min": null,
+              "max": null
+            },
+            {
+              "name": "cooling",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "lighting",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "heating",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "gsi",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "fsi",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "tc",
+              "class": "String"
+            },
+            {
+              "name": "comp",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            }
+          ],
+          "displayString": "$id"
+        },
+        {
+          "name": "Edificio",
+          "properties": [
+            {
+              "name": "id",
+              "class": "Long (autoinc)",
+              "pk": true,
+              "required": true,
+              "unique": true
+            },
+            {
+              "name": "refCat",
+              "class": "String",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "geom",
+              "class": "Geometry",
+              "patternType": null,
+              "pattern": null,
+              "min": null,
+              "max": null
+            },
+            {
+              "name": "heating",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "lighting",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "cooling",
+              "class": "Double",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "tc",
+              "class": "String"
+            },
+            {
+              "name": "constructionYear",
+              "class": "Integer",
+              "patternType": null,
+              "pattern": null
+            },
+            {
+              "name": "ct",
+              "class": "String"
+            }
+          ],
+          "displayString": "$id"
+        }
+      ]
+    },
+    "forms": [
+      {
+        "id": "Celda Form",
+        "properties": [
+          {
+            "property": "id",
+            "viewing": true,
+            "editing": false,
+            "owner": "Celda"
+          },
+          {
+            "property": "cooling",
+            "viewing": true,
+            "editing": true,
+            "owner": "Celda"
+          },
+          {
+            "property": "lighting",
+            "viewing": true,
+            "editing": true,
+            "owner": "Celda"
+          },
+          {
+            "property": "heating",
+            "viewing": true,
+            "editing": true,
+            "owner": "Celda"
+          },
+          {
+            "property": "gsi",
+            "viewing": true,
+            "editing": true,
+            "owner": "Celda"
+          },
+          {
+            "property": "fsi",
+            "viewing": true,
+            "editing": true,
+            "owner": "Celda"
+          },
+          {
+            "property": "tc",
+            "viewing": true,
+            "editing": true,
+            "owner": "Celda"
+          },
+          {
+            "property": "comp",
+            "viewing": true,
+            "editing": true,
+            "owner": "Celda"
+          },
+          {
+            "property": "geom",
+            "viewing": true,
+            "editing": true,
+            "owner": "Celda"
+          }
+        ],
+        "entity": "Celda",
+        "creatable": false,
+        "editable": false,
+        "removable": false,
+        "confirmation": false
+      },
+      {
+        "id": "Edificio Form",
+        "properties": [
+          {
+            "property": "id",
+            "viewing": true,
+            "editing": false,
+            "owner": "Edificio"
+          },
+          {
+            "property": "refCat",
+            "viewing": true,
+            "editing": true,
+            "owner": "Edificio"
+          },
+          {
+            "property": "heating",
+            "viewing": true,
+            "editing": true,
+            "owner": "Edificio"
+          },
+          {
+            "property": "lighting",
+            "viewing": true,
+            "editing": true,
+            "owner": "Edificio"
+          },
+          {
+            "property": "cooling",
+            "viewing": true,
+            "editing": true,
+            "owner": "Edificio"
+          },
+          {
+            "property": "tc",
+            "viewing": true,
+            "editing": true,
+            "owner": "Edificio"
+          },
+          {
+            "property": "constructionYear",
+            "viewing": true,
+            "editing": true,
+            "owner": "Edificio"
+          },
+          {
+            "property": "ct",
+            "viewing": true,
+            "editing": true,
+            "owner": "Edificio"
+          },
+          {
+            "property": "geom",
+            "viewing": true,
+            "editing": true,
+            "owner": "Edificio"
+          }
+        ],
+        "entity": "Edificio",
+        "creatable": false,
+        "editable": false,
+        "removable": false,
+        "confirmation": false
+      }
+    ],
+    "gui": {
+      "settings": {
+        "font": {
+          "family": "Arial",
+          "size": "14px"
+        },
+        "colorset": [
+          "#fff",
+          "#eee",
+          "#777",
+          "#555",
+          "#577492",
+          "#333",
+          "#222"
+        ],
+        "header": {
+          "type": "Text",
+          "text": "litheum"
+        }
+      },
+      "design": "1"
+    },
+    "lists": [
+      {
+        "id": "Celda List",
+        "properties": [
+          {
+            "property": "id",
+            "form": "Celda Form",
+            "owner": "Celda"
+          },
+          {
+            "property": "cooling",
+            "form": "Celda Form",
+            "owner": "Celda"
+          },
+          {
+            "property": "lighting",
+            "form": "Celda Form",
+            "owner": "Celda"
+          },
+          {
+            "property": "heating",
+            "form": "Celda Form",
+            "owner": "Celda"
+          },
+          {
+            "property": "gsi",
+            "form": "Celda Form",
+            "owner": "Celda"
+          },
+          {
+            "property": "fsi",
+            "form": "Celda Form",
+            "owner": "Celda"
+          },
+          {
+            "property": "tc",
+            "form": "Celda Form",
+            "owner": "Celda"
+          },
+          {
+            "property": "comp",
+            "form": "Celda Form",
+            "owner": "Celda"
+          }
+        ],
+        "entity": "Celda",
+        "form": "Celda Form",
+        "removeLink": false,
+        "sorting": false,
+        "searching": false,
+        "filtering": false
+      },
+      {
+        "id": "Edificio List",
+        "properties": [
+          {
+            "property": "id",
+            "form": "Edificio Form",
+            "owner": "Edificio"
+          },
+          {
+            "property": "refCat",
+            "form": "Edificio Form",
+            "owner": "Edificio"
+          },
+          {
+            "property": "heating",
+            "form": "Edificio Form",
+            "owner": "Edificio"
+          },
+          {
+            "property": "lighting",
+            "form": "Edificio Form",
+            "owner": "Edificio"
+          },
+          {
+            "property": "cooling",
+            "form": "Edificio Form",
+            "owner": "Edificio"
+          },
+          {
+            "property": "tc",
+            "form": "Edificio Form",
+            "owner": "Edificio"
+          },
+          {
+            "property": "constructionYear",
+            "form": "Edificio Form",
+            "owner": "Edificio"
+          },
+          {
+            "property": "ct",
+            "form": "Edificio Form",
+            "owner": "Edificio"
+          }
+        ],
+        "entity": "Edificio",
+        "form": "Edificio Form",
+        "removeLink": false,
+        "sorting": false,
+        "searching": false,
+        "filtering": false
+      }
+    ],
+    "menus": [
+      {
+        "id": "top",
+        "elements": [
+          {
+            "id": "Lists",
+            "type": "MENU",
+            "elements": [
+              {
+                "id": "Celda List",
+                "type": "VIEW",
+                "view": {
+                  "component": "LIST",
+                  "view": "Celda List"
+                }
+              },
+              {
+                "id": "Edificio List",
+                "type": "VIEW",
+                "view": {
+                  "component": "LIST",
+                  "view": "Edificio List"
+                }
+              }
+            ],
+            "access": {
+              "admin": true,
+              "logged": true
+            }
+          },
+          {
+            "id": "Components",
+            "type": "MENU",
+            "elements": [
+              {
+                "id": "Map viewer",
+                "type": "VIEW",
+                "view": {
+                  "component": "MAP",
+                  "view": "mapViewer"
+                }
+              }
+            ],
+            "access": {
+              "admin": true,
+              "logged": true
+            }
+          }
+        ]
+      }
+    ],
+    "mapViewer": {
+      "maps": [],
+      "layers": [],
+      "styles": []
+    },
+    "statics": []
+  }
+}

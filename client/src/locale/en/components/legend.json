@@ -1,0 +1,16 @@
+{
+  "legend": {
+    "no-data": "No available data",
+    "kWh/m2": "kWh/m2",
+    "title": "Demand Legend",
+    "items": {
+      "static": "Static",
+      "dynamic": "Dynamic"
+    },
+    "tooltip": {
+      "static": "Static: Energetic efficiency intervals",
+      "dynamic": "Dynamic: Minimun and maxium values for data displayed",
+      "btn": "Legend"
+    }
+  }
+}

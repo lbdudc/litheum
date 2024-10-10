@@ -1,0 +1,60 @@
+{
+  "layers": [
+    {
+      "layerType": "tilelayer",
+      "name": "Basemaps.Cartocdn",
+      "options": {
+        "params": {
+          "attribution": "'© OpenStreetMap contributors, © CartoDB'"
+        }
+      },
+      "url": "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+    },
+    {
+      "layerType": "tilelayer",
+      "name": "OpenStreetMap.Mapnik",
+      "options": {
+        "params": {
+          "attribution": "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+        }
+      },
+      "url": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    },
+    {
+      "layerType": "tilelayer",
+      "name": "Esri.WorldStreetMap",
+      "options": {
+        "params": {
+          "attribution": "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012"
+        }
+      },
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+    },
+    {
+      "layerType": "geojson",
+      "name": "celda-geom",
+      "list": "Celda List",
+      "form": "Celda Form",
+      "defaultStyle": "grayPolygon",
+      "availableStyles": ["heating", "cooling", "lighting", "grayPolygon"],
+      "url": "entities/celdas/geom/geom",
+      "repository": "CeldaEntityRepository",
+      "maxZoom": 15,
+      "minZoom": 1,
+      "paginated": false
+    },
+    {
+      "layerType": "geojson",
+      "name": "edificio-geom",
+      "list": "Edificio List",
+      "form": "Edificio Form",
+      "defaultStyle": "grayPolygon",
+      "availableStyles": ["heating", "cooling", "lighting", "grayPolygon"],
+      "url": "entities/edificios/geom/geom",
+      "repository": "EdificioEntityRepository",
+      "minZoom": 16,
+      "maxZoom": 18,
+      "paginated": true
+    }
+  ]
+}

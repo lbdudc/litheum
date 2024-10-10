@@ -1,0 +1,14 @@
+{
+  "layerManager": {
+    "layers": {
+      "OpenStreetMap-Mapnik": "OpenStreetMap.Mapnik",
+      "Esri-WorldStreetMap": "Esri.WorldStreetMap",
+      "Stamen-Terrain": "Stamen.Terrain",
+      "Stamen-TonerLite": "Stamen.TonerLite",
+      "Stadia-StamenTonerLite": "Stadia.StamenTonerLite",
+      "celda-geom": "celda-geom",
+      "edificio-geom": "edificio-geom"
+    },
+    "title": "Layer Manager"
+  }
+}

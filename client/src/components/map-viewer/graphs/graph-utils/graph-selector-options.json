@@ -1,0 +1,10 @@
+[
+  {
+    "value": "demand",
+    "label": "graphics.items.demand"
+  },
+  {
+    "value": "radiation",
+    "label": "graphics.items.radiation"
+  }
+]

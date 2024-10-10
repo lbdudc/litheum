@@ -1,0 +1,79 @@
+{
+  "selectors": {
+    "indicators": {
+      "title": "Visualización",
+      "label": "Demanda",
+      "heating": "Calefacción",
+      "cooling": "Refrigeración",
+      "lighting": "Iluminación",
+      "last-selected": "Última selección:",
+      "add": "Añadir",
+      "deselect": "Deseleccionar",
+      "individual": "Individual",
+      "grupal": "Grupal"
+    },
+    "display": {
+      "last": "Última",
+      "group": "Grupo",
+      "last-info": "Haz clic en una geometría para ver su información",
+      "group-info": "Selecciona varias geometrías para ver estadísticas de demanda",
+      "min": "Min",
+      "max": "Max",
+      "avg": "Avg",
+      "sum": "Sum",
+      "graph-tooltip": "Cargar gráfica",
+      "title": "Información",
+      "clear-button": "Deseleccionar todas",
+      "undo-selection": "Deshacer selección",
+      "reset": "Resetear mapa",
+      "download": {
+        "btn-tooltip": "Descargar información",
+        "info": "Al descargar, obtendrá dos archivos: </br> <ul><li> seleccion.csv: Contiene una lista con las geometrías seleccionadas y sus respectivas demandas energéticas </li> <li> estadisticas.csv: Dispone de los datos mostrados en la tabla de información grupal </li></ul>",
+        "selection-csv": "seleccion",
+        "statistics-csv": "estadisticas"
+      }
+    },
+    "recalculate": {
+      "tooltip-active": "Seleccionar geometrías",
+      "tooltip": "La herramienta recalcula la demanda tras incrementar el aislamiento de muros o techo, o realizar un cambio de ventanas. <br /> En los dos primeros casos, se puede seleccionar el espesor del aislamiento que se quiere añadir al cerramiento existente, se considera un aislamiento tipo con conductividad térmica λ=0,04 W/m K. <br /> En el cambio de ventanas, se pueden seleccionar tres opciones de cambio: </br> <ul><li> doble vidrio, se considera un vidrio tipo  4/10/4 (U=2,9 W/m2K)  </li><li> doble vidrio con cámara de Argón 90% 6/6/6 (U=2,0 W/m2K) </li> <li>doble vidrio con cámara de Argón 90% 6/15/6 (U=1,0 W/m2K)</li></ul>",
+      "add-button-tooltip": "Seleccionar",
+      "clear-geoms-button": "Despejar",
+      "title": "Recalcular demanda",
+      "recalc-button": "Recalcular",
+      "tc": {
+        "label": "Capacidad térmica",
+        "Light": "Ligera",
+        "Heavy": "Pesada",
+        "Very Heavy": "Muy pesada"
+      },
+      "ct": {
+        "label": "Tipo de construcción",
+        "retrofit": "Retrofit",
+        "reference": "Reference",
+        "standard": "Standard",
+        "low carbon": "Low carbon",
+        "zero carbon": "Zero carbon"
+      },
+      "dimm": {
+        "label": "Incremento aislamiento muro",
+        "0cm": "No se añade aislamiento",
+        "5cm": "5cm",
+        "10cm": "10cm",
+        "15cm": "15cm"
+      },
+      "dimt": {
+        "label": "Incremento aislamiento techo",
+        "0cm": "No se añade aislamiento",
+        "10cm": "10cm",
+        "20cm": "20cm"
+      },
+      "tipv": {
+        "label": "Cambio ventanas",
+        "no_change": "No se cambian las ventanas",
+        "doble": "Doble vidrio (U=2,9 W/m2K)",
+        "doble_argon": "Doble vidrio con cámara de argón (U=2,0 W/m2K)",
+        "doble_argon+": "Doble vidrio con cámara de argón + (U=1,0 W/m2K)"
+      }
+    }
+  }
+}

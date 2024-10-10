@@ -1,0 +1,33 @@
+
+{
+  "t_celda": {
+    "name": "Celda",
+    "prop": {
+        
+        "id": "id",
+        "geom": "geom",
+        "cooling": "cooling",
+        "lighting": "lighting",
+        "heating": "heating",
+        "gsi": "gsi",
+        "fsi": "fsi",
+        "tc": "tc",
+        "comp": "comp"
+    },
+    "messages": {
+      "create.success": "Celda creado.",
+      "update.success": "Celda actualizado.",
+      "delete.success": "Celda eliminado."
+    },
+    "error": {
+      "id-exists": "Un novo celda non pode ter un id",
+      "id-not-exists": "Actualizando celda sen id",
+      "form-errors": "Este celda non se pode gardar debido a erros no formulario."
+    },
+    "headers": {
+      "celdaList": "Celda List" ,
+      "celdaFormDetail": "Celda Form Detail",
+      "celdaForm": "Celda Form" 
+    }
+  }
+}

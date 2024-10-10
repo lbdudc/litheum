@@ -1,0 +1,41 @@
+{
+  "graphics": {
+    "items": {
+      "demand": "Balance enerxético",
+      "radiation": "Temperatura interior"
+    },
+    "minimized": {
+      "fullscreen-tooltip": "Ampliar",
+      "loading": "Cargando datos",
+      "close": "Pechar"
+    },
+    "fullscreen": {
+      "recalculate-title": "Recalcular gráfica"
+    },
+    "demand": { "title": "Balance enerxético" },
+    "radiation": {
+      "title": "Temperatura interior",
+      "yAxisLabel": "Radiación global horizontal media por hora (Wh). <br> Ganzas totais de calor solar (W/m²)",
+      "yAxis2Label": "Temperatura (°C)",
+      "xAxisLabel": "Hora do día (h)"
+    },
+    "tooltip": {
+      "demand": "Balance enerxético: ",
+      "radiation": "Temperatura interior: "
+    },
+    "months": {
+      "0": "Xaneiro",
+      "1": "Febreiro",
+      "2": "Marzo",
+      "3": "Abril",
+      "4": "Maio",
+      "5": "Xuño",
+      "6": "Xullo",
+      "7": "Agosto",
+      "8": "Setembro",
+      "9": "Outubro",
+      "10": "Novembro",
+      "11": "Decembro"
+    }
+  }
+}

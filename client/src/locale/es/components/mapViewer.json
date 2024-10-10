@@ -1,0 +1,61 @@
+{
+  "mapViewer": {
+    "mapViewer": "Visor de Mapa",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "downloadFormat": "Formato de descarga",
+    "export": "Exportar",
+    "loading": "Cargando datos",
+    "loading-recalc": "Recalculando demanda...",
+    "exportManager": "Gestor de exportaciones",
+    "listLayerElements": "Listar elementos de la capa",
+    "margin": "Margen",
+    "portrait": "Retrato",
+    "scale": "Escala",
+    "searchInMap": "Buscar en el mapa...",
+    "urlToShare": "URL para compartir",
+    "wmsDetail": {
+      "title": "WMS DETALLE",
+      "layers": "Capas",
+      "layer-items": "Elementos de la capa",
+      "layer-item-detail": "Detalle del elemento",
+      "no-data": "No hay datos",
+      "no-property-data": "Sin datos",
+      "form-tooltip": "Ir al formulario de detalle del elemento"
+    },
+    "routeCompletationError": "Por favor, completa o cancela la ruta antes de continuar",
+    "chooseEntity": "Escoja la entidad que desea listar",
+    "wmsLegend": {
+      "title": "Leyenda Capa WMS",
+      "no-data": "No hay datos disponibles"
+    },
+    "mustSelectAnExportOption": "Debe escoger al menos uno de los formatos de exportación",
+    "addALayer": "No hay capas añadidas. Añade una ",
+    "addALayer-link": "aquí",
+    "map": "Mapa",
+    "layer-label": {
+      "OpenStreetMap-Mapnik": "OpenStreetMap.Mapnik",
+      "Esri-WorldStreetMap": "Esri.WorldStreetMap",
+      "Stamen-Terrain": "Stamen.Terrain",
+      "Stamen-TonerLite": "Stamen.TonerLite",
+      "Stadia-StamenTonerLite": "Stadia.StamenTonerLite",
+      "celda-geom": "celda-geom",
+      "edificio-geom": "edificio-geom",
+      "Basemaps-Cartocdn": "Basemaps.Cartocdn"
+    },
+    "style-legend-label": {
+      "view-all": "Todas",
+      "view-selected": "Seleccionadas"
+    },
+    "map-label": {
+      "default": "Mapa por defecto",
+      "map": "Mapa"
+    },
+    "popup": {
+      "table": {
+        "property": "Propiedad",
+        "value": "Valor"
+      }
+    }
+  }
+}

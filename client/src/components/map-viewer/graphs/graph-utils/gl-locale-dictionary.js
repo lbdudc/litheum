@@ -1,0 +1,70 @@
+module.exports = {
+  Autoscale: "Autoescalar",
+  "Click to enter Colorscale title":
+    "Fai clic para introducir o título da Escala de Cor",
+  "Click to enter Component A title":
+    "Fai clic para introducir o título do Componente A",
+  "Click to enter Component B title":
+    "Fai clic para introducir o título do Componente B",
+  "Click to enter Component C title":
+    "Fai clic para introducir o título do Componente C",
+  "Click to enter Plot title": "Fai clic para introducir o título do Gráfico",
+  "Click to enter X axis title": "Fai clic para introducir o título do eixe X",
+  "Click to enter Y axis title": "Fai clic para introducir o título do eixe Y",
+  "Click to enter radial axis title":
+    "Fai clic para introducir o título do eixe radial",
+  "Compare data on hover": "Comparar datos ao pasar por enriba",
+  "Double-click on legend to isolate one trace":
+    "Fai dobre clic na lenda para illar unha traza",
+  "Double-click to zoom back out": "Fai dobre clic para restaurar a escala",
+  "Download plot as a png": "Descargar gráfico como png",
+  "Download plot": "Descargar gráfico",
+  "Edit in Chart Studio": "Editar en Chart Studio",
+  "IE only supports svg.  Changing format to svg.":
+    "IE só soporta svg. Cambiando formato a svg.",
+  "Lasso Select": "Seleccionar con lazo",
+  "Orbital rotation": "Rotación esférica",
+  Pan: "Modo Panorámica",
+  "Produced with Plotly.js": "Feito con Plotly.js",
+  Reset: "Reiniciar",
+  "Reset axes": "Reiniciar eixes",
+  "Reset camera to default": "Restaurar cámara predeterminada",
+  "Reset camera to last save": "Restaurar a cámara anterior",
+  "Reset view": "Restaurar vista",
+  "Reset views": "Restaurar vistas",
+  "Show closest data on hover":
+    "Amosar o dato máis próximo ao pasar por enriba",
+  "Snapshot succeeded": "A captura da instantánea realizouse correctamente",
+  "Sorry, there was a problem downloading your snapshot!":
+    "Sentímolo, houbo un problema ao descargar a instantánea",
+  "Taking snapshot - this may take a few seconds":
+    "Capturando unha instantánea - isto pode levar uns segundos",
+  "Toggle Spike Lines": "Amosar/ocultar liñas de pico",
+  "Toggle show closest data on hover":
+    "Activar/desactivar amosar o dato máis próximo ao pasar por enriba",
+  "Turntable rotation": "Rotación plana",
+  Zoom: "Modo Ampliar/Reducir",
+  "Zoom in": "Ampliar",
+  "Zoom out": "Reducir",
+  "close:": "pechar:",
+  "high:": "alto:",
+  "incoming flow count:": "contaxe de fluxo de entrada:",
+  "kde:": "edp:",
+  "lat:": "lat:",
+  "lon:": "lon:",
+  "low:": "baixa:",
+  "lower fence:": "límite inferior:",
+  "max:": "máx:",
+  "mean:": "media:",
+  "median:": "mediana:",
+  "min:": "mín:",
+  "new text": "novo texto",
+  "open:": "apertura:",
+  "outgoing flow count:": "contaxe de fluxo de saída:",
+  "q1:": "q1:",
+  "q3:": "q3:",
+  "source:": "fonte:",
+  "target:": "destino:",
+  trace: "traza",
+  "upper fence:": "límite superior:",
+};

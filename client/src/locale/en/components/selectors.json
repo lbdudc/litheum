@@ -1,0 +1,79 @@
+{
+  "selectors": {
+    "indicators": {
+      "title": "Display",
+      "label": "Demand",
+      "heating": "Heating",
+      "cooling": "Cooling",
+      "lighting": "Lighting",
+      "last-selected": "Last selected:",
+      "add": "Add",
+      "deselect": "Deselect",
+      "individual": "Individual",
+      "grupal": "Group"
+    },
+    "display": {
+      "last": "Last",
+      "group": "Group",
+      "last-info": "Click on a geometry to view its information",
+      "group-info": "Select multiple geometries to view demand statistics",
+      "min": "Min",
+      "max": "Max",
+      "avg": "Avg",
+      "sum": "Sum",
+      "graph-tooltip": "Load graph",
+      "title": "Information",
+      "clear-button": "Deselect all",
+      "undo-selection": "Undo selection",
+      "reset": "Reset map",
+      "download": {
+        "btn-tooltip": "Download information",
+        "info": "Upon downloading, you'll receive two files: </br> <ul><li> selection.csv: Contains a list with the selected geometries and their respective energy demands </li> <li> statistics.csv: Has the data shown in the group information table </li></ul>",
+        "selection-csv": "selection",
+        "statistics-csv": "statistics"
+      }
+    },
+    "recalculate": {
+      "tooltip-active": "Select geometries",
+      "tooltip": "The tool recalculates the demand after increasing wall or ceiling insulation, or changing windows. <br /> In the first two cases, you can select the thickness of the insulation you want to add to the existing enclosure, considering a standard insulation with thermal conductivity λ=0.04 W/m K. <br /> Regarding window replacement, three options are available: </br> <ul><li> double glazing, considered as 4/10/4 glass (U=2.9 W/m2K)  4/10/4 (U=2,9 W/m2K)  </li><li> ouble glazing with 90% Argon gas 6/6/6 (U=2.0 W/m2K) </li> <li>Double glazing with 90% Argon gas 6/15/6 (U=1.0 W/m2K)</li></ul>",
+      "add-button-tooltip": "Select",
+      "title": "Recalculate demand",
+      "clear-geoms-button": "Clear",
+      "recalc-button": "Recalculate",
+      "tc": {
+        "label": "Thermal capacity",
+        "Light": "Light",
+        "Heavy": "Heavy",
+        "Very Heavy": "Very heavy"
+      },
+      "ct": {
+        "label": "Construction type",
+        "retrofit": "Retrofit",
+        "reference": "Reference",
+        "standard": "Standard",
+        "low carbon": "Low carbon",
+        "zero carbon": "Zero carbon"
+      },
+      "dimm": {
+        "label": "Wall insulation increase",
+        "0cm": "No insulation is added",
+        "5cm": "5cm",
+        "10cm": "10cm",
+        "15cm": "15cm"
+      },
+      "dimt": {
+        "label": "Roof insulation increase",
+        "0cm": "No insulation is added",
+        "10cm": "10cm",
+        "20cm": "20cm"
+      },
+      "tipv": {
+        "label": "Window change",
+        "no_change": "The windows are not being changed",
+        "doble": "Double glass (U=2.9 W/m2K)",
+        "doble_argon": "Double glass with argon chamber (U=2.0 W/m2K)",
+        "doble_argon+": "Double glass with argon chamber + (U=1.0 W/m2K)"
+      }
+    }
+  }
+}

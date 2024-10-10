@@ -1,0 +1,15 @@
+{
+  "legend": {
+    "no-data": "No hay datos",
+    "kWh/m2": "kWh/m2",
+    "items": {
+      "static": "Estática",
+      "dynamic": "Dinámica"
+    },
+    "tooltip": {
+      "static": "Estática: Intervalos de eficiencia energética",
+      "dynamic": "Dinámica: Mínimo y máximo de los datos mostrados",
+      "btn": "Leyenda"
+    }
+  }
+}

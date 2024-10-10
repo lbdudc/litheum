@@ -1,0 +1,7 @@
+geopandas
+numpy
+numpy
+pandas
+psycopg2
+python-dotenv
+geojson

@@ -1,0 +1,79 @@
+{
+  "selectors": {
+    "indicators": {
+      "title": "Visualización",
+      "label": "Demanda",
+      "heating": "Calefacción",
+      "cooling": "Refrixeración",
+      "lighting": "Iluminación",
+      "last-selected": "Última selección:",
+      "add": "Engadir",
+      "deselect": "Deseleccionar",
+      "individual": "Individual",
+      "grupal": "Grupal"
+    },
+    "display": {
+      "last": "Última",
+      "group": "Grupo",
+      "last-info": "Fai clic nunha xeometría para ver a súa información",
+      "group-info": "Selecciona varias xeometrías para ver estatísticas de demanda",
+      "min": "Min",
+      "max": "Max",
+      "avg": "Avg",
+      "sum": "Sum",
+      "graph-tooltip": "Cargar gráfica",
+      "title": "Información",
+      "clear-button": "Deseleccionar todas",
+      "undo-selection": "Desfacer selección",
+      "reset": "Resetear mapa",
+      "download": {
+        "btn-tooltip": "Descargar información",
+        "info": "Ao descargar, obterá dous ficheiros: </br> <ul><li> seleccion.csv: Contén unha lista coas xeometrías seleccionadas e a súas respectivas demandas enerxéticas </li> <li> estadisticas.csv: Dispoñe dos datos mostrados na táboa de información grupal </li></ul>",
+        "selection-csv": "seleccion",
+        "statistics-csv": "estadisticas"
+      }
+    },
+    "recalculate": {
+      "tooltip-active": "Seleccionar xeometrías",
+      "tooltip": "A ferramenta recalcula a demanda despois de aumentar o illamento das paredes ou do teito, ou cambiar as fiestras. <br /> Nos dous primeiros casos, pódese seleccionar o grosor do illamento que se quere engadir ao peche existente, considerando un illamento estándar cunha condutividade térmica de λ=0.04 W/m K. <br /> No cambio de fiestras, pódense seleccionar tres opcións de cambio: </br> <ul><li> vidro dobre, considerado como vidro 4/10/4 (U=2.9 W/m2K) </li><li> vidro dobre con 90% de gas argón 6/6/6 (U=2.0 W/m2K) </li> <li> vidro dobre con 90% de gas argón 6/15/6 (U=1.0 W/m2K) </li></ul>",
+      "add-button-tooltip": "Seleccionar",
+      "title": "Recalcular demanda",
+      "recalc-button": "Recalcular",
+      "clear-geoms-button": "Despexar",
+      "tc": {
+        "label": "Capacidad térmica",
+        "Light": "Lixeira",
+        "Heavy": "Pesada",
+        "Very Heavy": "Moi pesada"
+      },
+      "ct": {
+        "label": "Tipo de construción",
+        "retrofit": "Retrofit",
+        "reference": "Reference",
+        "standard": "Standard",
+        "low carbon": "Low carbon",
+        "zero carbon": "Zero carbon"
+      },
+      "dimm": {
+        "label": "Incremento illamento muro",
+        "0cm": "Non se engade illamento",
+        "5cm": "5cm",
+        "10cm": "10cm",
+        "15cm": "15cm"
+      },
+      "dimt": {
+        "label": "Incremento illamento teito",
+        "0cm": "Non se engade illamento",
+        "10cm": "10cm",
+        "20cm": "20cm"
+      },
+      "tipv": {
+        "label": "Cambio fiestras",
+        "no_change": "Non se cambian as fiestras",
+        "doble": "Dobre vidro (U=2,9 W/m2K)",
+        "doble_argon": "Dobre vidro con cámara de argón (U=2,0 W/m2K)",
+        "doble_argon+": "Dobre vidro con cámara de argón + (U=1,0 W/m2K)"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+
+{
+  "t_edificio": {
+    "name": "Edificio",
+    "prop": {
+        
+        "id": "id",
+        "refCat": "refCat",
+        "geom": "geom",
+        "heating": "heating",
+        "lighting": "lighting",
+        "cooling": "cooling",
+        "tc": "tc",
+        "constructionYear": "constructionYear",
+        "ct": "ct"
+    },
+    "messages": {
+      "create.success": "Edificio creado.",
+      "update.success": "Edificio actualizado.",
+      "delete.success": "Edificio eliminado."
+    },
+    "error": {
+      "id-exists": "Un novo edificio non pode ter un id",
+      "id-not-exists": "Actualizando edificio sen id",
+      "form-errors": "Este edificio non se pode gardar debido a erros no formulario."
+    },
+    "headers": {
+      "edificioList": "Edificio List" ,
+      "edificioFormDetail": "Edificio Form Detail",
+      "edificioForm": "Edificio Form" 
+    }
+  }
+}

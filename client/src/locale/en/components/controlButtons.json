@@ -1,0 +1,7 @@
+{
+  "controlButtons": {
+    "filters": "Toogle view",
+    "multiple": "Polygon selection",
+    "show-buildings": "Show buildings"
+  }
+}

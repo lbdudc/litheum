@@ -1,0 +1,41 @@
+{
+  "graphics": {
+    "items": {
+      "demand": "Balance energético",
+      "radiation": "Temperatura interior"
+    },
+    "minimized": {
+      "fullscreen-tooltip": "Ampliar",
+      "loading": "Cargando datos",
+      "close": "Cerrar"
+    },
+    "fullscreen": {
+      "recalculate-title": "Recalcular gráfica"
+    },
+    "demand": { "title": "Balance energético" },
+    "radiation": {
+      "title": "Temperatura interior",
+      "yAxisLabel": "Radiación global horizontal media por hora (Wh). <br> Ganancias totales de calor solar (W/m²)",
+      "yAxis2Label": "Temperatura (°C)",
+      "xAxisLabel": "Hora del día (h)"
+    },
+    "tooltip": {
+      "demand": "Balance energético: ",
+      "radiation": "Temperatura interior: "
+    },
+    "months": {
+      "0": "Enero",
+      "1": "Febrero",
+      "2": "Marzo",
+      "3": "Abril",
+      "4": "Mayo",
+      "5": "Junio",
+      "6": "Julio",
+      "7": "Agosto",
+      "8": "Septiembre",
+      "9": "Octubre",
+      "10": "Noviembre",
+      "11": "Diciembre"
+    }
+  }
+}

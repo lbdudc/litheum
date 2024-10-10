@@ -1,0 +1,61 @@
+{
+  "mapViewer": {
+    "mapViewer": "Map Viewer",
+    "cancel": "Cancel",
+    "close": "Close",
+    "downloadFormat": "Download format",
+    "loading": "Loading data",
+    "loading-recalc": "Recalculating demand...",
+    "export": "Export",
+    "exportManager": "Export manager",
+    "listLayerElements": "List layer elements",
+    "margin": "Margin",
+    "portrait": "Portrait",
+    "scale": "Scale",
+    "searchInMap": "Search in map...",
+    "urlToShare": "URL to share",
+    "wmsDetail": {
+      "title": "WMS DETAIL",
+      "layers": "Layers",
+      "layer-items": "Layer items",
+      "layer-item-detail": "Item detail",
+      "no-data": "There is no data",
+      "no-property-data": "No data",
+      "form-tooltip": "Go to the item's detail form"
+    },
+    "routeCompletationError": "Please complete or cancel route calculation first",
+    "chooseEntity": "Choose the entity that you want to list",
+    "wmsLegend": {
+      "title": "WMS Layer Legend",
+      "no-data": "There is no data available"
+    },
+    "mustSelectAnExportOption": "You must choose at least one of the export formats",
+    "addALayer": "There are no added layers. Add one ",
+    "addALayer-link": "here",
+    "map": "Map",
+    "layer-label": {
+      "OpenStreetMap-Mapnik": "OpenStreetMap.Mapnik",
+      "Esri-WorldStreetMap": "Esri.WorldStreetMap",
+      "Stamen-Terrain": "Stamen.Terrain",
+      "Stamen-TonerLite": "Stamen.TonerLite",
+      "Stadia-StamenTonerLite": "Stadia.StamenTonerLite",
+      "celda-geom": "celda-geom",
+      "edificio-geom": "edificio-geom",
+      "Basemaps-Cartocdn": "Basemaps.Cartocdn"
+    },
+    "style-legend-label": {
+      "view-all": "All",
+      "view-selected": "Selected"
+    },
+    "map-label": {
+      "default": "Default map",
+      "map": "Map"
+    },
+    "popup": {
+      "table": {
+        "property": "Property",
+        "value": "Value"
+      }
+    }
+  }
+}
