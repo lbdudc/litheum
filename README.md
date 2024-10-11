@@ -25,7 +25,7 @@ There are two main ways to launch the LITHEUM application, depending on your pre
 2. ##### Launching Each Component Individually
     If you prefer to run each component separately, you can do so by following the instructions in the respective README files for each part of the system:
 
-    - [Importer](./flask/README.md): Instructions for running the Python data importer.
+    - [Importer](./deploy/importer/README.md): Instructions for running the Python data importer.
     - [Flask server](./flask/README.md): Steps to start the Python Flask server, which wraps the UBEM.
     - [Java server](./server/README.md): Guide for launching the Java backend.
     - [Web client](./client/README.md): How to run the Vue.js interface for interacting with the platform.
