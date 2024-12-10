@@ -40,6 +40,13 @@
       "title": "Recalcular demanda",
       "recalc-button": "Recalcular",
       "clear-geoms-button": "Despexar",
+      "detailed-mode-on": "Modelo ISO52016 detallado",
+      "detailed-mode-off": "Modelo ISO52016 simple",
+      "active-mode-on": "Modo activo",
+      "active-mode-off": "Modo pasivo",
+      "min-error": "O valor ten que ser superior a 0",
+      "max-error": "O valor ten que ser inferior a 100",
+      "warning-detailed": "O modo detallado pode tardar hasta 5 minutos en calcularse",
       "tc": {
         "label": "Capacidad térmica",
         "Light": "Lixeira",
@@ -73,6 +80,20 @@
         "doble": "Dobre vidro (U=2,9 W/m2K)",
         "doble_argon": "Dobre vidro con cámara de argón (U=2,0 W/m2K)",
         "doble_argon+": "Dobre vidro con cámara de argón + (U=1,0 W/m2K)"
+      },
+      "vent": {
+        "label": "Ventilación",
+        "on": "ON",
+        "off": "OFF"
+      },
+      "solar": {
+        "label": "Control solar",
+        "on": "ON",
+        "off": "OFF"
+      },
+      "thermostat": {
+        "heating": "Termostato calefacción",
+        "cooling": "Termostato refrixeración"
       }
     }
   }

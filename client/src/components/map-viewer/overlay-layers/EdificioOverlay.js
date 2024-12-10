@@ -47,7 +47,7 @@ export default class EdificioOverlay extends Overlay {
     }
   }
 
-  async getGraphicsData(refCat) {
-    return await this.repository.getGraphicsData(refCat);
+  async getGraphicsData(id) {
+    return await this.repository.getGraphicsData(id);
   }
 }

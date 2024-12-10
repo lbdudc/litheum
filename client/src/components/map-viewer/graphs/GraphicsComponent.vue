@@ -4,11 +4,17 @@
       <span> {{ $t("refCat") }}: {{ geom.data.refCat }} </span>
       <div style="margin-left: auto">
         <v-tooltip bottom open-delay="200" color="#1976d2">
-      <template v-slot:activator="{ on: onFullScreen, props }">
-        <v-btn x-small icon v-on="onFullScreen"
-          v-bind="props" @click="onCloseGraph"><v-icon>mdi-close-circle-outline</v-icon></v-btn>
-        </template>
-        <span>{{ $t("graphics.minimized.close") }}</span>
+          <template v-slot:activator="{ on: onFullScreen, props }">
+            <v-btn
+              x-small
+              icon
+              v-on="onFullScreen"
+              v-bind="props"
+              @click="onCloseGraph"
+              ><v-icon>mdi-close-circle-outline</v-icon></v-btn
+            >
+          </template>
+          <span>{{ $t("graphics.minimized.close") }}</span>
         </v-tooltip>
       </div>
     </div>
@@ -20,6 +26,7 @@
         :demand="demand"
         :radiation="radiation"
         :refCat="geom.data.refCat"
+        :geom-id="geom.data.id"
       ></graphics-dialog>
       <v-col cols="10">
         <v-select
@@ -33,27 +40,6 @@
           @change="onGraphicChange"
         ></v-select>
       </v-col>
-      <!-- <v-col cols="1">
-        <v-tooltip bottom :disabled="loading">
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon
-              class="mt-2 mr-2"
-              v-bind="attrs"
-              v-on="on"
-              color="primary"
-              small
-              style="z-index: 3"
-            >
-              info
-            </v-icon>
-          </template>
-          <p>
-            {{ $t("graphics.tooltip.radiation") }}<br />{{
-              $t("graphics.tooltip.demand")
-            }}<br />
-          </p>
-        </v-tooltip>
-      </v-col> -->
     </v-row>
     <v-row v-if="loading" class="loading-div" cols="12" no-gutters>
       <div class="d-flex flex-column">
@@ -128,9 +114,7 @@ export default {
         this.demand = this.geom.graphics.demand;
         this.radiation = this.geom.graphics.radiation;
       } else {
-        const result = await currentOverlay.getGraphicsData(
-          this.geom.data.refCat
-        );
+        const result = await currentOverlay.getGraphicsData(this.geom.data.id);
         this.demand = result.demand;
         this.radiation = result.radiation;
       }
@@ -171,8 +155,8 @@ export default {
       this.showRadiationGraphic("graphic-container", false);
     },
     onCloseGraph() {
-      this.$emit('close-graph');
-    }
+      this.$emit("close-graph");
+    },
   },
 };
 </script>

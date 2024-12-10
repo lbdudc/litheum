@@ -11,7 +11,7 @@ Plotly.register(glLocale);
 
 const ylabels = [
   0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750,
-  800,
+  800, 850, 900, 1000, 1050, 1100,
 ];
 const ylabels2 = [0, 5, 10, 15, 20, 25, 30, 35, 40];
 
@@ -40,25 +40,24 @@ export async function showDemandGraphic(id, demand, fullScreen) {
   );
   const trace4 = _createDemandTrace(
     monthLabels,
-    demand.dfs_t,
-    i18n.t("graphics.radiation.dfs_t"),
+    demand.hhl_v,
+    i18n.t("graphics.radiation.hhl_v"),
     "gold"
   );
   const trace5 = _createDemandTrace(
     monthLabels,
-    demand.demand,
-    i18n.t("graphics.radiation.demand"),
-    "black",
-    "scatter"
-  );
-  const trace6 = _createDemandTrace(
-    monthLabels,
-    demand.demand,
-    i18n.t("graphics.radiation.demand"),
+    demand.heating_t,
+    i18n.t("graphics.radiation.heating_t"),
     "silver"
   );
+  const trace7 = _createDemandTrace(
+    monthLabels,
+    demand.heat_storage,
+    i18n.t("graphics.radiation.heat_storage"),
+    "lightgreen"
+  );
 
-  const data = [trace1, trace2, trace3, trace4, trace5, trace6];
+  const data = [trace1, trace2, trace3, trace4, trace5, trace7];
   const layout = {
     title: i18n.t("graphics.demand.title"),
     hovermode: "closest",
@@ -72,7 +71,7 @@ export async function showDemandGraphic(id, demand, fullScreen) {
     },
     yaxis: {
       tickformat: "(",
-      dtick: 200,
+      dtick: 20,
       gridcolor: "rgba(245, 190, 109, 0.4)",
       tickcolor: "black",
     },
@@ -140,6 +139,7 @@ export async function showRadiationGraphic(
       fixedrange: true,
       anchor: !fullScreen ? "x" : "x13",
       overlaying: "y",
+      zerolinecolor: "#66000000",
       side: "right",
       tickcolor: "black",
       tickmode: fullScreen ? "sync" : "linear",
@@ -161,10 +161,9 @@ export async function showRadiationGraphic(
     const monthToDisplay = fullScreen ? j : currentMonth;
     data.push(
       ..._createRadiationTraces(
-        radiation.ghi[monthToDisplay],
-        radiation.tshg[monthToDisplay],
-        radiation.tin[monthToDisplay],
-        radiation.tout[monthToDisplay],
+        radiation.solar[monthToDisplay + 1],
+        radiation.tin[monthToDisplay + 1],
+        radiation.tout[monthToDisplay + 1],
         subplotIndex
       )
     );
@@ -221,32 +220,19 @@ function _createDemandTrace(months, values, hovertext, color, type = "bar") {
   };
 }
 
-function _createRadiationTraces(ghi, tshg, tin, tout, x) {
+function _createRadiationTraces(solarRadiation, tin, tout, x) {
   const xaxis = `x${x}`;
   const dayHours = Array.from({ length: 25 }, (_, index) => index);
-  const trace1 = {
-    name: "GHI",
-    x: dayHours,
-    y: ghi,
-    textposition: "none",
-    hoverinfo: "text+y",
-    text: Array(dayHours.length).fill("W/m² GHI"),
-    fill: "tozeroy",
-    type: "scatter",
-    mode: "none",
-    legendgroup: "GHI",
-    showlegend: x == 2,
-    xaxis: xaxis,
-    fillcolor: "#F7E0BE",
-  };
   const trace2 = {
-    name: "TSHG",
+    name: i18n.t("graphics.radiation.solar_radiation"),
     x: dayHours,
-    y: tshg,
+    y: solarRadiation,
     textposition: "none",
-    legendgroup: "TSHG",
+    legendgroup: i18n.t("graphics.radiation.solar_radiation"),
     hoverinfo: "y+text",
-    text: Array(dayHours.length).fill("W/m² TSHG"),
+    text: Array(dayHours.length).fill(
+      `W/m² ${i18n.t("graphics.radiation.solar_radiation")}`
+    ),
     fill: "tozeroy",
     type: "scatter",
     mode: "none",
@@ -255,14 +241,16 @@ function _createRadiationTraces(ghi, tshg, tin, tout, x) {
     fillcolor: "#EE9E00",
   };
   const trace3 = {
-    name: "Tin",
+    name: i18n.t("graphics.radiation.t_in"),
     x: dayHours,
     y: tin,
     textposition: "none",
     hoverinfo: "y+text",
-    legendgroup: "Tin",
+    legendgroup: i18n.t("graphics.radiation.t_in"),
     showlegend: x == 2,
-    text: Array(dayHours.length).fill("ºC Tin"),
+    text: Array(dayHours.length).fill(
+      `ºC ${i18n.t("graphics.radiation.t_in")}`
+    ),
     type: "scatter",
     xaxis: xaxis,
     yaxis: "y2",
@@ -271,14 +259,16 @@ function _createRadiationTraces(ghi, tshg, tin, tout, x) {
     },
   };
   const trace4 = {
-    name: "Tout",
+    name: i18n.t("graphics.radiation.t_out"),
     x: dayHours,
     y: tout,
     textposition: "none",
-    legendgroup: "Tout",
+    legendgroup: i18n.t("graphics.radiation.t_out"),
     showlegend: x == 2,
     hoverinfo: "y+text",
-    text: Array(dayHours.length).fill("ºC Tout"),
+    text: Array(dayHours.length).fill(
+      `ºC ${i18n.t("graphics.radiation.t_out")}`
+    ),
     type: "scatter",
     xaxis: xaxis,
     yaxis: "y2",
@@ -286,5 +276,5 @@ function _createRadiationTraces(ghi, tshg, tin, tout, x) {
       color: "black",
     },
   };
-  return [trace1, trace2, trace3, trace4];
+  return [trace2, trace3, trace4];
 }

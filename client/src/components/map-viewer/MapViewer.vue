@@ -32,6 +32,8 @@
           selectionMode: selectionModeFlag,
           selectedIndicator: consumptionSelector,
           isGraphActive: isGraphActive,
+          isActiveMode: isActiveMode,
+          isDetailedMode: isDetailedMode,
         }"
         :selected-view="selectedView"
         :is-loading="loading"
@@ -49,6 +51,8 @@
         @load-graph="onLoadGraphClick"
         @center-view="onCenterView"
         @reset-map="onResetMap"
+        @active-mode="(newVal) => (isActiveMode = newVal)"
+        @detailed-mode="(newVal) => (isDetailedMode = newVal)"
       ></lateral-selectors>
     </v-slide-x-transition>
 
@@ -60,7 +64,13 @@
 
     <div v-if="loading" id="loading-div">
       <v-col>
-        <v-row v-if="retrievedGeomValues == null" justify="center">
+        <v-row
+          v-if="
+            retrievedGeomValues == null ||
+            (retrievedGeomValues != null && selectionModeFlag == 0)
+          "
+          justify="center"
+        >
           <v-progress-circular
             color="primary"
             indeterminate
@@ -182,6 +192,8 @@ export default {
       currentSelectionMode: null,
       mapHasBeenRecalculated: false,
       showRatingDialog: false,
+      isActiveMode: true,
+      isDetailedMode: false,
     };
   },
   beforeDestroy() {
@@ -320,7 +332,13 @@ export default {
             dimm: newValues.dimm,
             dimt: newValues.dimt,
             tipv: newValues.tipv,
+            vent: newValues.vent,
+            solar: newValues.solar,
+            heatingTherm: newValues.heatingTherm,
+            coolingTherm: newValues.coolingTherm,
+            detailedMode: newValues.detailedMode,
             idList: list.map((geom) => geom.feature.id),
+            activeMode: newValues.activeMode,
             refCatList: list.map((geom) => {
               return {
                 refCat: geom.feature.properties.refCat,
@@ -354,7 +372,10 @@ export default {
             }
 
             this.setNewPropertyValues(geom.feature.properties, el);
-            if (this.selectedOverlay.isPaginated) {
+            if (
+              this.selectedOverlay.isPaginated &&
+              this.currentSelectionMode.id == "individual"
+            ) {
               geom.feature.graphics = {};
               geom.feature.graphics.radiation = el.radiation;
               geom.feature.graphics.demand = el.demand;
@@ -562,7 +583,6 @@ export default {
     async onResetMap() {
       this.loading = true;
       this.mapHasBeenRecalculated = false;
-      console.log(this.map.getLayers());
       const hideLayers = this.map
         .getLayers()
         .filter((el) => el.options.id == this.selectedOverlay.id)
@@ -598,11 +618,12 @@ export default {
 </script>
 <style lang="css" scoped>
 #loading-div {
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.5);

@@ -17,14 +17,20 @@
     },
     "radiation": {
       "title": "Indoor temperature",
-      "yAxisLabel": "Global horizontal irradiation mean hourly (Wh). <br> Total solar heat gains (W/m²)",
+      "yAxisLabel": "Global horizontal irradiation mean hourly (W/m²)",
       "yAxis2Label": "Temperature (°C)",
       "xAxisLabel": "Time of day (h)",
-      "hhl_t": "Heat loss",
+      "hhl_t": "Heat transmission losses",
       "ihg_t": "Internal heat gains",
-      "dsg_t": "Direct solar gains",
-      "dfs_t": "Diffuse solar gains",
-      "demand": "Demand"
+      "dsg_t": "Solar gains",
+      "hhl_v": "Heat loss transfer ventilation",
+      "demand": "Demand",
+      "heating_t": "Heating contribution",
+      "cooling_t": "Cooling",
+      "heat_storage": "Heat storage",
+      "solar_radiation": "Solar radiation",
+      "t_in": "Indoor temperature",
+      "t_out": "Outdoor temperature"
     },
     "tooltip": {
       "demand": "Energy balance: ",

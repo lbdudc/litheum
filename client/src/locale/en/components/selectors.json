@@ -40,6 +40,13 @@
       "title": "Recalculate demand",
       "clear-geoms-button": "Clear",
       "recalc-button": "Recalculate",
+      "detailed-mode-on": "ISO52016 detailed model",
+      "detailed-mode-off": "ISO52016 simple model",
+      "active-mode-on": "Active mode",
+      "active-mode-off": "Pasive mode",
+      "min-error": "The value must be at least 0",
+      "max-error": "The value cannot exceed 100",
+      "warning-detailed": "Detailed mode may take up to 5 minutes to calculate",
       "tc": {
         "label": "Thermal capacity",
         "Light": "Light",
@@ -73,6 +80,20 @@
         "doble": "Double glass (U=2.9 W/m2K)",
         "doble_argon": "Double glass with argon chamber (U=2.0 W/m2K)",
         "doble_argon+": "Double glass with argon chamber + (U=1.0 W/m2K)"
+      },
+      "vent": {
+        "label": "Ventilation",
+        "on": "ON",
+        "off": "OFF"
+      },
+      "solar": {
+        "label": "Solar control",
+        "on": "ON",
+        "off": "OFF"
+      },
+      "thermostat": {
+        "heating": "Heating thermostat",
+        "cooling": "Cooling thermostat"
       }
     }
   }

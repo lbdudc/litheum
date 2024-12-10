@@ -8,17 +8,14 @@ import psycopg2
 from psycopg2.extras import execute_values
 from dotenv import load_dotenv
 from pyproj import Transformer
-from c_lth import C_LTH, RC_LTH_edif
+from c_lth import Monthly_HC_MALLA, Monthly_HC
+from c_lth.climate import climate_litheum
 
 load_dotenv()
 
-def load_csv(csv_filenames):
-    data = {}
-    for filename in csv_filenames:
-        key = os.path.splitext(filename)[0]
-        filepath = os.path.join('./resources/csv', filename)
-        data[key] = pd.read_csv(filepath, header=None)
-    return data
+def load_csv():
+    filepath = os.path.join('./resources/csv', 'climate.csv')
+    return pd.read_csv(filepath)
 
 def execute_schema_file(cursor):
     with open("./ddl/schema.sql", 'r') as sql_file:
@@ -52,7 +49,9 @@ def polygon_converter(coordinates, srid_actual):
     return transformed_polygon
 
 def insert_edificios(cur):
-    data = load_csv(['dhsr.csv', 'dnsr.csv', 'dbt.csv'])
+    csv = load_csv()
+    climate = climate_litheum(csv)
+    i = 1
     with open("./resources/edificios.geojson") as f:
         gj = geojson.load(f)
         insertValues_geom = []
@@ -60,28 +59,40 @@ def insert_edificios(cur):
         crs = gj['crs']['properties']['name']
         for el in gj['features']:
             features = el['properties']
-            
+            if features['GFA'] < 20:
+                continue
+
+            # These are missing on the geojson datasource
+            features["OBS_N"] = features['ObstN']
+            features["OBS_S"] = features['ObstS']
+            features["OBS_E"] = features['ObstE']
+            features["OBS_W"] = features['ObstW']
+
             if(el['geometry']['type'] == 'Polygon'):
                 el['geometry']['type'] = 'MultiPolygon'
                 el['geometry']['coordinates'] = [el['geometry']['coordinates']]
 
-            result = RC_LTH_edif.calculoLTH_edif(data['dhsr'], data['dnsr'], data['dbt'], features, '0cm', '0cm', 'sin_cambio')
+            litheum_calc = Monthly_HC.edif_litheum(features, climate, 0, 0, 0, 'ONN', 20, 27)
+            result = litheum_calc.calcQht()
+
             coordinates = el['geometry']['coordinates']
             transformed_coordinates = multipolygon_converter(coordinates, crs)
 
             multipolygon_str = ','.join(['(' + ','.join([' '.join([str(coord[0]), str(coord[1])]) for coord in ring]) + ')' for ring in transformed_coordinates[0]])
-            insertValues_geom.append(("SRID=4326;MULTIPOLYGON((%s))" % multipolygon_str, features['Date_cons'], result['COOLING'], result['HEATING'], result['LIGHTING'], features['RefCat'], features['Tc'], features['Ct']))
+            insertValues_geom.append((i, "SRID=4326;MULTIPOLYGON((%s))" % multipolygon_str, features['Date_cons'], result['COOLING'], result['HEATING'], result['LIGHTING'], features['RefCat'], features['Tc'], features['Ct']))
             
-            insertValues_recalc.append((features['RefCat'], features['Gz'], features['LAT'], features['MOR'], features['Env_N'], features['Env_E'], features['Env_S'], features['Env_O'], features['GFA'], features['L'], features['OBS_N'], features['OBS_S'], features['OBS_E'], features['OBS_O'], features['Tc'], features['Ct']))
+            insertValues_recalc.append((i, features['RefCat'], features['Gz'], features['LAT'], features['MOR'], features['Env_N'], features['Env_E'], features['Env_S'], features['Env_O'], features['GFA'], features['L'], features['OBS_N'], features['OBS_S'], features['OBS_E'], features['OBS_W'], features['Tc'], features['Ct'], features['h_obs'], features['Env_W'], features['Use']))
+            i = i + 1
 
-        insertQuery_geom = "INSERT INTO t_edificio(geom, construction_year, cooling, heating, lighting, ref_cat, tc, ct) VALUES %s"
+        insertQuery_geom = "INSERT INTO t_edificio(id, geom, construction_year, cooling, heating, lighting, ref_cat, tc, ct) VALUES %s"
         execute_values(cur, insertQuery_geom, insertValues_geom)
 
-        insertQuery_recalc = "INSERT INTO t_edificio_recalc(ref_cat, gz, lat, mor, env_n, env_e, env_s, env_o, gfa, l, obs_n, obs_s, obs_e, obs_o, tc, ct) VALUES %s"
+        insertQuery_recalc = "INSERT INTO t_edificio_recalc(id, ref_cat, gz, lat, mor, env_n, env_e, env_s, env_o, gfa, l, obs_n, obs_s, obs_e, obs_w, tc, ct, h_obs, env_w, use) VALUES %s"
         execute_values(cur, insertQuery_recalc, insertValues_recalc)
 
 def insert_celdas(cur):
-    data = load_csv(['dhsr.csv', 'dnsr.csv', 'dbt.csv'])
+    csv = load_csv()
+    climate = climate_litheum(csv)
     with open("./resources/malla.geojson") as f:
         gj = geojson.load(f)
         insertValues_geom = []
@@ -89,9 +100,18 @@ def insert_celdas(cur):
         crs = gj['crs']['properties']['name']
         for el in gj['features']:
             features = el['properties']
+
+            if (features['GFA'] <= 200 or features['Or'] <= 0 or features['L'] <= 0):
+                continue
+
             coordinates = el['geometry']['coordinates']
 
-            result = C_LTH.calculoLTH(data['dhsr'], data['dnsr'], data['dbt'], features, '0cm', '0cm', 'sin_cambio')
+            # These are missing on the geojson datasource
+            features['Ct'] = 'grid'
+            features["Use"] = "1_residential"
+
+            litheum_calc = Monthly_HC_MALLA.edif_litheum(features, climate, 0, 0, 0)
+            result = litheum_calc.calcQht()
 
             transformed_coordinates = polygon_converter(coordinates, crs)
         

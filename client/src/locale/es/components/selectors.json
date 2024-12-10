@@ -40,6 +40,13 @@
       "clear-geoms-button": "Despejar",
       "title": "Recalcular demanda",
       "recalc-button": "Recalcular",
+      "detailed-mode-on": "Modelo ISO52016 detallado",
+      "detailed-mode-off": "Modelo ISO52016 simple",
+      "active-mode-on": "Modo activo",
+      "active-mode-off": "Modo pasivo",
+      "min-error": "El valor ha de ser mayor a 0",
+      "max-error": "El valor ha de ser menor que 100",
+      "warning-detailed": "El modo detallado puede tardar hasta 5 minutos en calcularse",
       "tc": {
         "label": "Capacidad térmica",
         "Light": "Ligera",
@@ -73,6 +80,20 @@
         "doble": "Doble vidrio (U=2,9 W/m2K)",
         "doble_argon": "Doble vidrio con cámara de argón (U=2,0 W/m2K)",
         "doble_argon+": "Doble vidrio con cámara de argón + (U=1,0 W/m2K)"
+      },
+      "vent": {
+        "label": "Ventilación",
+        "on": "ON",
+        "off": "OFF"
+      },
+      "solar": {
+        "label": "Control solar",
+        "on": "ON",
+        "off": "OFF"
+      },
+      "thermostat": {
+        "heating": "Termostato calefacción",
+        "cooling": "Termostato refrigeración"
       }
     }
   }
