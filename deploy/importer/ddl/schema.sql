@@ -30,6 +30,7 @@ CREATE TABLE public.t_celda (
 );
 
 CREATE TABLE public.t_edificio_recalc (
+	id int8 NOT NULL,
 	ref_cat varchar(255) NOT NULL,
 	gz float8 NULL,
 	lat float8 NULL,
@@ -38,15 +39,18 @@ CREATE TABLE public.t_edificio_recalc (
 	env_e float8 NULL,
 	env_s float8 NULL,
 	env_o float8 NULL,
+	env_w float8 NULL,
 	gfa float8 NULL,
 	l float8 NULL,
 	obs_n float8 NULL,
 	obs_s float8 NULL,
 	obs_e float8 NULL,
-	obs_o float8 NULL,
+	obs_w float8 NULL,
 	ct varchar(255) NULL,
 	tc varchar(255) NULL,
-	CONSTRAINT t_edificio_recalc_pkey PRIMARY KEY (ref_cat)
+	h_obs float8 NULL,
+	use varchar(255) NULL,
+	CONSTRAINT t_edificio_recalc_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE public.t_celda_recalc (

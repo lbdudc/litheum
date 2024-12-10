@@ -54,7 +54,7 @@ export default {
     }
   },
 
-  async getGraphicsData(refCat) {
+  async getGraphicsData(id) {
     const options = {
       method: "GET",
       headers: {
@@ -64,7 +64,7 @@ export default {
     };
     try {
       const response = await fetch(
-        `${properties.FLASK_SERVER_URL}/recalc/edificios/${refCat}/graphs`,
+        `${properties.FLASK_SERVER_URL}/recalc/edificios/${id}/graphs`,
         options
       );
       return await response.json();

@@ -15,9 +15,20 @@
     "demand": { "title": "Balance energético" },
     "radiation": {
       "title": "Temperatura interior",
-      "yAxisLabel": "Radiación global horizontal media por hora (Wh). <br> Ganancias totales de calor solar (W/m²)",
+      "yAxisLabel": "Radiación global horizontal media por hora (W/m²)",
       "yAxis2Label": "Temperatura (°C)",
-      "xAxisLabel": "Hora del día (h)"
+      "xAxisLabel": "Hora del día (h)",
+      "hhl_t": "Pérdidas de calor por transmisión",
+      "ihg_t": "Ganancias de calor internas",
+      "dsg_t": "Ganancias solares",
+      "hhl_v": "Ventilación por transferencia de pérdida de calor",
+      "demand": "Demanda",
+      "heating_t": "Aporte de calefacción",
+      "cooling_t": "Refrigeración",
+      "heat_storage": "Almacenamiento de calor",
+      "solar_radiation": "Radiación solar",
+      "t_in": "Temperatura interior",
+      "t_out": "Temperatura exterior"
     },
     "tooltip": {
       "demand": "Balance energético: ",

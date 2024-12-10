@@ -94,7 +94,7 @@ export default class Overlay {
     return this.bounds;
   }
 
-  getGraphicsData(refCat) {
+  getGraphicsData(id) {
     return null;
   }
 

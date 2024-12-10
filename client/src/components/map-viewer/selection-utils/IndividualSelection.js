@@ -5,6 +5,11 @@ export default class IndividualSelection extends GeometrySelection {
   constructor() {
     super();
     this._selectedGeom = null;
+    this._id = "individual";
+  }
+
+  get id() {
+    return this._id;
   }
 
   get selectedGeom() {

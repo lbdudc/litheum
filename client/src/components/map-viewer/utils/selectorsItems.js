@@ -43,19 +43,29 @@ export const comsumptionSelector = [
 ];
 
 export const dimmItems = [
-  { label: "selectors.recalculate.dimm.0cm", value: "0cm" },
-  { label: "selectors.recalculate.dimm.5cm", value: "5cm" },
-  { label: "selectors.recalculate.dimm.10cm", value: "10cm" },
-  { label: "selectors.recalculate.dimm.15cm", value: "15cm" },
+  { label: "selectors.recalculate.dimm.0cm", value: 0 },
+  { label: "selectors.recalculate.dimm.5cm", value: 0.05 },
+  { label: "selectors.recalculate.dimm.10cm", value: 0.1 },
+  { label: "selectors.recalculate.dimm.15cm", value: 0.15 },
 ];
 export const dimtItems = [
-  { label: "selectors.recalculate.dimt.0cm", value: "0cm" },
-  { label: "selectors.recalculate.dimt.10cm", value: "10cm" },
-  { label: "selectors.recalculate.dimt.20cm", value: "20cm" },
+  { label: "selectors.recalculate.dimt.0cm", value: 0 },
+  { label: "selectors.recalculate.dimt.10cm", value: 0.1 },
+  { label: "selectors.recalculate.dimt.20cm", value: 0.2 },
 ];
 export const tipvItems = [
-  { label: "selectors.recalculate.tipv.no_change", value: "sin_cambio" },
-  { label: "selectors.recalculate.tipv.doble", value: "doble" },
-  { label: "selectors.recalculate.tipv.doble_argon", value: "doble_argon" },
-  { label: "selectors.recalculate.tipv.doble_argon+", value: "doble_argon+" },
+  { label: "selectors.recalculate.tipv.no_change", value: 0 },
+  { label: "selectors.recalculate.tipv.doble", value: 2.9 },
+  { label: "selectors.recalculate.tipv.doble_argon", value: 2.0 },
+  { label: "selectors.recalculate.tipv.doble_argon+", value: 1.0 },
+];
+
+export const ventItems = [
+  { label: "selectors.recalculate.vent.on", value: "ON" },
+  { label: "selectors.recalculate.vent.off", value: "OFF" },
+];
+
+export const solarItems = [
+  { label: "selectors.recalculate.solar.on", value: "ON" },
+  { label: "selectors.recalculate.solar.off", value: "OFF" },
 ];

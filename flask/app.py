@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
-from c_lth import C_LTH, RC_LTH_edif, graphics
+from c_lth import Monthly_HC_MALLA, Monthly_HC
+from c_lth.climate import climate_litheum
+from c_lth.Functions_EN52016 import launch_simulation
 from waitress import serve
 from dotenv import load_dotenv
 from flask_cors import CORS, cross_origin
@@ -17,6 +19,11 @@ port = os.getenv('PORT')
 
 litheum = Flask(__name__)
 CORS(litheum, resources={r"/*": {"origins": ["https://litheum.citic.udc.es", "http://localhost:1234"]}})
+
+def transform_to_list_of_lists(data):
+    df_transformed = data.reset_index().pivot(index='Month', columns='hour_day', values=data.name)
+    df_transformed = df_transformed.fillna(0.0)
+    return {str(index + 1): row.tolist() for index, row in enumerate(df_transformed.values)}
 
 def get_celda_by_id(id):
     conn = psycopg2.connect(dbname=os.getenv('POSTGRES_DB'), user=os.getenv('POSTGRES_USER'),
@@ -39,14 +46,16 @@ def get_celda_by_id(id):
         'Ct_p_80': celda[11],
         'Ct_p_07': celda[12],
         'Ct_p_cd': celda[13],
-        'Tc': celda[14]
+        'Tc': celda[14],
+        'Ct': "grid",
+        "Use": "1_residential"
     }
 
-def get_edificio_by_refcat(refcat):
+def get_edificio_by_id(id):
     conn = psycopg2.connect(dbname=os.getenv('POSTGRES_DB'), user=os.getenv('POSTGRES_USER'),
                 password=os.getenv('POSTGRES_PASSWORD'), host=os.getenv('POSTGRES_HOST'), port=5432)
     cur = conn.cursor()
-    cur.execute("select ter.gz, ter.lat, ter.mor, ter.env_n, ter.env_e, ter.env_s, ter.env_o, ter.gfa, ter.l, ter.obs_n, ter.obs_s, ter.obs_e, ter.obs_o, ter.tc, ter.ct from t_edificio_recalc ter where ter.ref_cat = '{}'".format(refcat))
+    cur.execute("select ter.gz, ter.lat, ter.mor, ter.env_n, ter.env_e, ter.env_s, ter.env_o, ter.gfa, ter.l, ter.obs_n, ter.obs_s, ter.obs_e, ter.obs_w, ter.tc, ter.ct, ter.h_obs, ter.env_w, ter.use from t_edificio_recalc ter where ter.id = '{}'".format(id))
     edificio = cur.fetchone()
     conn.close()
     return {
@@ -62,9 +71,12 @@ def get_edificio_by_refcat(refcat):
         'OBS_N': edificio[9],
         'OBS_S': edificio[10],
         'OBS_E': edificio[11],
-        'OBS_O': edificio[12],
+        'OBS_W': edificio[12],
         'L': edificio[8],
         'Gz': edificio[0],
+        'h_obs': edificio[15],
+        'Env_W': edificio[16],
+        "Use": edificio[17]
     }
 
 def convert_to_json_serializable(obj):
@@ -80,17 +92,14 @@ def convert_to_json_serializable(obj):
         return {convert_to_json_serializable(item) for item in obj}
     return obj
 
-def load_csv(csv_filenames):
-    data = {}
-    for filename in csv_filenames:
-        key = os.path.splitext(filename)[0]
-        filepath = os.path.join(resourcesFolder, filename)
-        data[key] = pd.read_csv(filepath, header=None)
-    return data
+def load_csv():
+    filepath = os.path.join(resourcesFolder, 'climate.csv')
+    return pd.read_csv(filepath)
 
 @litheum.route("/recalc/celdas", methods=['POST'])
 def change_malla():
-    data = load_csv(['dhsr.csv', 'dnsr.csv', 'dbt.csv'])
+    csv = load_csv()
+    climate = climate_litheum(csv)
     body = request.get_json()
     dimm = body['dimm']
     dimt = body['dimt']
@@ -100,7 +109,10 @@ def change_malla():
     responseBody = []
     for id in ids:
         celda = get_celda_by_id(id)
-        result = C_LTH.calculoLTH(data['dhsr'], data['dnsr'], data['dbt'], celda, dimm, dimt, tipv)
+
+        litheum_calc = Monthly_HC_MALLA.edif_litheum(celda, climate, dimm, dimt, tipv)
+        result = litheum_calc.calcQht()
+
 
         jsonObj = {}
         jsonObj['id'] = id
@@ -112,22 +124,37 @@ def change_malla():
 
     return jsonify(responseBody)
 
+
 @litheum.route("/recalc/edificios", methods=['POST'])
 def change_edificio():
-    data = load_csv(['dhsr.csv', 'dnsr.csv', 'dbt.csv'])
+    csv = load_csv()
+    climate = climate_litheum(csv)
+
     body = request.get_json()
     dimm = body['dimm']
     dimt = body['dimt']
     tipv = body['tipv']
+    detailedMode = body['detailedMode']
+    vent = body['vent']
+    solar = body['solar']
+    heatingTherm = 0 if body['heatingTherm'] == 'None' else body['heatingTherm']
+    coolingTherm = 0 if body['coolingTherm'] == 'None' else body['coolingTherm']
     refCats = body['refCatList']
+    activeMode = 'OFF' if body['activeMode'] == 0 else 'ON'
 
-    responseBody = []
+    responseBody = []   
     for refcatId in refCats:
         identifier = refcatId["id"]
         refcat = refcatId["refCat"]
-        edificio = get_edificio_by_refcat(refcat)
-        result = RC_LTH_edif.calculoLTH_edif(data['dhsr'], data['dnsr'], data['dbt'], edificio, dimm, dimt, tipv)
-        result['data_T'] = result["data_T"].to_dict(orient="list")
+        edificio = get_edificio_by_id(identifier)
+
+        litheum_calc = Monthly_HC.edif_litheum(edificio, climate, dimm, dimt, tipv, activeMode, float(heatingTherm), float(coolingTherm))
+        result = litheum_calc.calcQht()
+        if detailedMode == 1:
+            aux = result['LIGHTING']
+            result = launch_simulation(csv, edificio, 9504, 743, dimm, dimt, tipv, activeMode, float(heatingTherm), float(coolingTherm), solar, vent)
+            result['lighting'] = aux
+
         result = convert_to_json_serializable(result)
 
         jsonObj = {}
@@ -136,36 +163,63 @@ def change_edificio():
         jsonObj['cooling'] = result['cooling']
         jsonObj['heating'] = result['heating']
         jsonObj['lighting'] = result['lighting']
+
         jsonObj['demand'] = {
-            "dfs_t": result['dfs_t'],
-            "dsg_t": result['dsg_t'],
-            "demand": result['demand'],
-            "hhl_t": result['hhl_t'],
-            "ihg_t": result['ihg_t']
+            "hhl_v": result['hhl_vent'].tolist(),
+            "dsg_t": result['sg_t'],
+            "heating_t": result['heating_t'].tolist(),
+            "cooling_T": result['cooling_t'].tolist(),
+            "hhl_t": result['hhl_trans'].tolist(),
+            "ihg_t": result['ihg_t'].tolist(),
+            "heat_storage": result['heatstorage'].tolist()
         }
-        jsonObj["radiation"] = result["data_t"]
+
+        if detailedMode == 0:
+            jsonObj['radiation'] = {
+                "tin": result['tint_day_month'].to_dict(orient="list"),
+                "tout": result['tout_day_month'].to_dict(orient="list"),
+                "solar": result['solarrad_day_month'].to_dict(orient="list"),
+            }
+        else:
+            jsonObj['demand']["dsg_t"] = jsonObj['demand']["dsg_t"].tolist()
+            jsonObj['radiation'] = {
+                "tin": transform_to_list_of_lists(result['tint_day_month']),
+                "tout": transform_to_list_of_lists(result['tout_day_month']),
+                "solar": transform_to_list_of_lists(result['solarrad_day_month']),
+            }
 
         responseBody.append(jsonObj)
 
     return jsonify(responseBody)
 
-@litheum.route("/recalc/edificios/<ref_cat>/graphs", methods=['GET'])
-def get_edificio_graph_data(ref_cat):
-    data = load_csv(['dhsr.csv', 'dnsr.csv', 'dbt.csv'])
-    edificio = get_edificio_by_refcat(ref_cat)
-    result = graphics.calculoLTH_edif(data['dhsr'], data['dnsr'], data['dbt'], edificio, '0cm', '0cm', 'sin_cambio')
+@litheum.route("/recalc/edificios/<id>/graphs", methods=['GET'])
+def get_edificio_graph_data(id):
+    csv = load_csv()
+    climate = climate_litheum(csv)
 
-    result['data_T'] = result["data_T"].to_dict(orient="list")
+    edificio = get_edificio_by_id(id)
+
+    litheum_calc = Monthly_HC.edif_litheum(edificio, climate, 0, 0, 0, 'ON', 20, 27)
+    result = litheum_calc.calcQht()
+
     result = convert_to_json_serializable(result)
     jsonObj = {}
     jsonObj['demand'] = {
-        "dfs_t": result['dfs_t'],
-        "dsg_t": result['dsg_t'],
-        "demand": result['demand'],
-        "hhl_t": result['hhl_t'],
-        "ihg_t": result['ihg_t']
+        "hhl_v": result['hhl_vent'].tolist(),
+        "dsg_t": result['sg_t'],
+        "heating_t": result['heating_t'].tolist(),
+        "cooling_T": result['cooling_t'].tolist(),
+        "hhl_t": result['hhl_trans'].tolist(),
+        "ihg_t": result['ihg_t'].tolist(),
+        "heat_storage": result['heatstorage'].tolist()
     }
-    jsonObj["radiation"] = result["data_t"]
+
+    jsonObj['radiation'] = {
+        "tin": result['tint_day_month'].to_dict(orient="list"),
+        "tout": result['tout_day_month'].to_dict(orient="list"),
+        "solar": result['solarrad_day_month'].to_dict(orient="list"),
+    }
+
     return jsonify(jsonObj)
 
 resourcesFolder = "./resources"

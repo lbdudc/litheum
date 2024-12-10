@@ -88,11 +88,22 @@
           </div>
           <div v-else>
             <InformationTable
+              v-if="
+                isGraphActive != null &&
+                isDetailedMode != null &&
+                isActiveMode != null
+              "
               :selected-geom="selectedGeom"
               :has-graph="hasGraph"
-              :is-graph-active="isGraphActive"
+              :initial-state="{
+                isGraphActive: isGraphActive,
+                isDetailedMode: isDetailedMode,
+                isActiveMode: isActiveMode,
+              }"
               :show-info="tab == 0"
               @load-graph="onLoadGraphClick"
+              @active-mode="onActiveModeClick"
+              @detailed-mode="onDetailedModeClick"
             ></InformationTable>
           </div>
         </v-col>
@@ -140,13 +151,17 @@
         <v-icon v-if="showRecalculate">expand_less</v-icon>
         <v-icon v-else>expand_more</v-icon>
       </v-btn>
-      <v-col cols="12" v-show="showRecalculate">
+      <v-col cols="12" v-show="showRecalculate" class="mb-4">
         <RecalculateDemand
           :disable-selectors="
             tab == 1
               ? Object.entries(selectedGeometries).length == 0
               : selectedGeom == null
           "
+          :is-geom-selected="selectedGeom != null"
+          :is-edificio="hasGraph"
+          :is-detailed-mode="isDetailedMode"
+          :is-active-mode="isActiveMode"
           @submit-recalc="onSubmit"
         ></RecalculateDemand>
       </v-col>
@@ -199,6 +214,11 @@ export default {
       type: Boolean,
       mandatory: false,
     },
+    isLoading: {
+      type: Boolean,
+      mandatory: false,
+      default: false,
+    },
   },
   data() {
     return {
@@ -210,12 +230,16 @@ export default {
       isGraphActive: false,
       tab: null,
       showInformationSelector: true,
+      isActiveMode: null,
+      isDetailedMode: null,
     };
   },
   mounted() {
     this.selectedIndicator = this.initialState.selectedIndicator;
     this.isGraphActive = this.initialState.isGraphActive;
     this.tab = this.initialState.selectionMode;
+    this.isActiveMode = this.initialState.isActiveMode;
+    this.isDetailedMode = this.initialState.isDetailedMode;
   },
   watch: {
     selectedGeom(newVal) {
@@ -266,6 +290,14 @@ export default {
     },
     resetMap() {
       this.$emit("reset-map");
+    },
+    onDetailedModeClick(newVal) {
+      this.isDetailedMode = newVal;
+      this.$emit("detailed-mode", this.isDetailedMode);
+    },
+    onActiveModeClick(newVal) {
+      this.isActiveMode = newVal;
+      this.$emit("active-mode", this.isActiveMode);
     },
   },
 };

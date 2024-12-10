@@ -6,6 +6,7 @@
     "downloadFormat": "Download format",
     "loading": "Loading data",
     "loading-recalc": "Recalculating demand...",
+    "loading-recalc-graph": "Recalculating graphs...",
     "export": "Export",
     "exportManager": "Export manager",
     "listLayerElements": "List layer elements",

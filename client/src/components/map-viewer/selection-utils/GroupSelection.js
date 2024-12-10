@@ -7,6 +7,11 @@ export default class GroupSelection extends GeometrySelection {
     this._selectedGeometries = {};
     this._idQueue = [];
     this._data = null;
+    this._id = "group";
+  }
+
+  get id() {
+    return this._id;
   }
 
   get selectedGeometries() {

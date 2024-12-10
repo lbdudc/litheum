@@ -198,9 +198,9 @@ export default {
     selectionDisabled() {
       this.selectionActive = false;
     },
-    onCloseGraph(){
+    onCloseGraph() {
       this.$emit("close-graph");
-    }
+    },
   },
 };
 </script>
